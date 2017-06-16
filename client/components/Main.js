@@ -2,27 +2,81 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { logout } from '../reducer/user';
+
+import axios from 'axios'
+
+
+import {VictoryBar, VictoryChart, VictoryAxis} from 'victory';
 
 // Component //
 
 const Main = props => {
 
-  const { children, handleClick, loggedIn } = props;
+  const { children } = props;
+
+  const data = [
+  {quarter: 1, earnings: 13000},
+  {quarter: 2, earnings: 16500},
+  {quarter: 3, earnings: 14250},
+  {quarter: 4, earnings: 19000}
+];
+
+
+axios.put('/api/range', {
+  data: {
+    date1: new Date ('01/02/2013'),
+    date2: new Date ('02/05/2013')
+  }
+})
+.then(res => res.data)
+.then(array => console.log(array))
+  // .then(res => res.data)
+  // .then(messageArray => {
+  //   const data = []
+  //   messageArray.forEach(message => {
+  //     data.push({});
+  //     data[data.length -1].message = message.id;
+  //     return message.getWords()
+  //       .then(array => data[data.length -1].score = array.reduce((sum, current) => sum + current)/(array.length))
+  //       .then(() => console.log(data))
+  //   })
+  // })
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
-      { loggedIn ?
-          <nav>
-            <Link to="/home">Home</Link>
-            <a href="#" onClick={handleClick}>Logout</a>
-          </nav> :
-          <nav>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </nav>
-      }
+      <h1>TextMood</h1>
+      <h3>TextMood is a life enhancing tool that caters to all of your neurotic impulses</h3>
+        <ul>
+          <li>How has your relationship with beau <b>evolved</b> or <b>devolved</b> over time?</li>
+          <li>Is April the cruelest month? See how your mood changes <b>with the seasons</b></li>
+          <li>Do rainy days and Mondays always <b>get you down</b>? We’ll show you the receipts!</li>
+          <li>Is the friend-ship worth keeping or is it sinking and bringing you down with it? <b>Get'em overboard!</b></li>
+          <li>How did national tragedies <b>affect YOU</b>? And how to protect yourself against negative feelings when they strike again</li>
+          <li>Find out when you should devote a little more to your <b>self-care routine</b></li>
+          <li>And was the past really better... Or are you remembering it through the sunny haze of <b>nostalgia</b>?</li>
+        </ul>
+      <VictoryChart
+          // domainPadding will add space to each side of VictoryBar to
+          // prevent it from overlapping the axis
+          domainPadding={20}
+        >
+          <VictoryAxis
+            // tickValues specifies both the number of ticks and where
+            // they are placed on the axis
+            tickValues={[1, 2, 3, 4]}
+            tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+          />
+          <VictoryAxis
+            dependentAxis
+            // tickFormat specifies how ticks should be displayed
+            tickFormat={(x) => (`$${x / 1000}k`)}
+          />
+          <VictoryBar
+            data={data}
+            x="quarter"
+            y="earnings"
+          />
+      </VictoryChart>
       <hr />
       { children }
     </div>
@@ -31,20 +85,13 @@ const Main = props => {
 
 Main.propTypes = {
   children: PropTypes.object,
-  handleClick: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired
 };
 
 // Container //
 
-const mapState = ({ user }) => ({
-  loggedIn: !!user.id
-});
+const mapState = ({}) => ({});
 
 const mapDispatch = dispatch => ({
-  handleClick () {
-    dispatch(logout());
-  }
 });
 
 export default connect(mapState, mapDispatch)(Main);

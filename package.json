@@ -1,5 +1,5 @@
 {
-  "name": "boilermaker",
+  "name": "TextMood",
   "version": "1.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "main": "index.js",
@@ -22,6 +22,7 @@
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
+    "plotly": "^1.0.6",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -30,7 +31,8 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^3.30.2"
+    "sequelize": "^3.30.2",
+    "victory": "^0.21.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

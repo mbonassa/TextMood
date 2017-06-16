@@ -13,12 +13,9 @@ const UserHome = props => {
   );
 };
 
-const mapState = ({ user }) => ({
-  email: user.email
+const mapState = ({}) => ({
+
 });
 
 export default connect(mapState)(UserHome);
 
-UserHome.propTypes = {
-  email: PropTypes.string
-};
