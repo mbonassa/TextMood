@@ -25,19 +25,18 @@ router.put('/range', (req, res, next) => {
                           })
                           return Promise.all(innerPromiseArray)
                         })
+                        .then(array => {
+                          const average =  array.length ? array.reduce((sum, current) => sum + current)/(array.length): null;
+                          const dataObj = average ? {score: average, date: message.date, handle: message.handle} : null;
+                          if (dataObj) return dataObj
+                        })
       promiseArray.push(promise);
     })
     return Promise.all(promiseArray)
   })
-  .then(arrayOfArrays => {
-    const scoresArray = [];
-    arrayOfArrays.forEach(array => {
-      const average = array.length ? (array.reduce((sum, current) => sum + current))/(array.length) : null;
-      average ? scoresArray.push(average) : null
-    })
-    return scoresArray
+  .then(array => {
+    res.json(array.filter(element => element))
   })
-  .then(scoresArray => res.json(scoresArray))
   .catch(console.error.bind(console));
 });
 

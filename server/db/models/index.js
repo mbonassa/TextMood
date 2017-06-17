@@ -6,6 +6,8 @@ const Word = require('./word');
 Message.belongsToMany(Word, {through: 'MessageWord'});
 Word.belongsToMany(Message, {through: 'MessageWord'});
 
+
+
 module.exports = {
 	db,
     Message,

@@ -10,11 +10,20 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 module.exports = app;
 
+// function handleRender (req, res) {
+
+// }
+
+// function renderFullPage (html, preloadedState) {
+
+// }
+
 const createApp = () => app
   .use(morgan('dev'))
   .use(express.static(path.join(__dirname, '..', 'public')))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+  // .use(handleRender)
   .use('/api', require('./api'))
   .use((req, res, next) =>
     path.extname(req.path).length > 0 ? res.status(404).send('Not found') : next())

@@ -24,28 +24,18 @@ const Main = props => {
 
 axios.put('/api/range', {
   data: {
-    date1: new Date ('01/02/2013'),
-    date2: new Date ('02/05/2013')
+    date1: new Date ('09/01/2012'),
+    date2: new Date ('10/01/2012')
   }
 })
 .then(res => res.data)
 .then(array => console.log(array))
-  // .then(res => res.data)
-  // .then(messageArray => {
-  //   const data = []
-  //   messageArray.forEach(message => {
-  //     data.push({});
-  //     data[data.length -1].message = message.id;
-  //     return message.getWords()
-  //       .then(array => data[data.length -1].score = array.reduce((sum, current) => sum + current)/(array.length))
-  //       .then(() => console.log(data))
-  //   })
-  // })
+
 
   return (
     <div>
       <h1>TextMood</h1>
-      <h3>TextMood is a life enhancing tool that caters to all of your neurotic impulses</h3>
+      <h3>TextMood is a life enhancing tool that caters to your neurotic impulses</h3>
         <ul>
           <li>How has your relationship with beau <b>evolved</b> or <b>devolved</b> over time?</li>
           <li>Is April the cruelest month? See how your mood changes <b>with the seasons</b></li>
@@ -53,7 +43,6 @@ axios.put('/api/range', {
           <li>Is the friend-ship worth keeping or is it sinking and bringing you down with it? <b>Get'em overboard!</b></li>
           <li>How did national tragedies <b>affect YOU</b>? And how to protect yourself against negative feelings when they strike again</li>
           <li>Find out when you should devote a little more to your <b>self-care routine</b></li>
-          <li>And was the past really better... Or are you remembering it through the sunny haze of <b>nostalgia</b>?</li>
         </ul>
       <VictoryChart
           // domainPadding will add space to each side of VictoryBar to
