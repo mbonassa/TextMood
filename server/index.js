@@ -10,12 +10,28 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 module.exports = app;
 
-// function handleRender (req, res) {
+// import { renderToString } from 'react-dom/server';
 
+// function handleRender(req, res) {
+//   // Create a new Redux store instance
+//   const store = createStore(counterApp)
+
+//   // Render the component to a string
+//   const html = renderToString(
+//     <Provider store={store}>
+//       <App />
+//     </Provider>
+//   )
+
+//   // Grab the initial state from our Redux store
+//   const preloadedState = store.getState()
+
+//   // Send the rendered page back to the client
+//   res.send(renderFullPage(html, preloadedState))
 // }
 
 // function renderFullPage (html, preloadedState) {
-
+  
 // }
 
 const createApp = () => app
